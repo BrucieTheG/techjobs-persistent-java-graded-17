@@ -1,29 +1,22 @@
 package org.launchcode.techjobs.persistent.models;
 
-
-import jakarta.persistence.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Job  extends AbstractEntity{
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @Valid
+public class Job extends AbstractEntity {
+    @ManyToOne
     private Employer employer;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @Valid
+    @ManyToMany
     private List<Skill> skills = new ArrayList<>();
-
 
     public Job() {
     }
 
-    // Initialize the id and value fields.
     public Job(Employer anEmployer, List<Skill> someSkills) {
         super();
         this.employer = anEmployer;
@@ -31,8 +24,6 @@ public class Job  extends AbstractEntity{
     }
 
     // Getters and setters.
-
-
     public Employer getEmployer() {
         return employer;
     }
